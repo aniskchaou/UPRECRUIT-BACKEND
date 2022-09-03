@@ -35,23 +35,25 @@ sequelize.sync().then(function () {
     RenewContract.create()
     AcceptanceFeedBack.create()
     RefusalFeedBack.create()
-    HeaderPage.create({title:'hello'})
+    HeaderPage.create({ title: 'hello' })
     FooterPage.create({
-                          title1: 'Sequelize.STRING',
-                          title2: 'Sequelize.STRING',
-                          title3: 'Sequelize.STRING',
-                          title4: 'Sequelize.STRING'
-                      })
-    SummaryPage.create({ jobsPosted: 'Sequelize.STRING',
-                            allCompanies : 'Sequelize.STRING',
-                            totalMembers :'Sequelize.STRING',
-                            happyMembers:'Sequelize.STRING'})
+        title1: 'Sequelize.STRING',
+        title2: 'Sequelize.STRING',
+        title3: 'Sequelize.STRING',
+        title4: 'Sequelize.STRING'
+    })
+    SummaryPage.create({
+        jobsPosted: 'Sequelize.STRING',
+        allCompanies: 'Sequelize.STRING',
+        totalMembers: 'Sequelize.STRING',
+        happyMembers: 'Sequelize.STRING'
+    })
     NewsLetterPage.create({
-                              title: 'Sequelize.STRING',
-                              subTitle : 'Sequelize.STRING'
+        title: 'Sequelize.STRING',
+        subTitle: 'Sequelize.STRING'
 
-                          })
+    })
 }).then(function (res) {
-    console.log(res.get({ plain: true }));
+    console.log(res);
 });
 
