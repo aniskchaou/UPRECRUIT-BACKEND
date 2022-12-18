@@ -14,8 +14,48 @@ exports.findAllJobs = (res) => {
             });
         });
 }
+exports.findJob = (job, res) => {
 
-exports.createJob = (job,res) => {
+
+    const jobs = Job.findAll({
+        where: {
+            post: job.post,
+            jobType: job.jobType,
+            experienceLevel: job.experienceLevel
+        }
+    })
+
+
+
+    /* .then(data => {
+         res.send(data);
+         res.render("elements/services", { viewTitle: 'Services',jobs })
+     })
+     .catch(err => {
+         res.status(500).send({
+             message:
+                 err.message || "Some error occurred while retrieving Jobs."
+         });
+     });*/
+
+
+    Promise
+        .all([jobs])
+        .then(responses => {
+            res.render("elements/search", {
+                viewTitle: 'Jobs', jobs: responses[0].dataValues
+
+            });
+
+        }).catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving Jobs."
+            });
+        });
+
+}
+exports.createJob = (job, res) => {
     // Save Job in the database
     Job.create(job)
         .then(data => {

@@ -16,18 +16,23 @@ var skillController = require('../controllers/api/skill.controllers')
 var companyController = require('../controllers/api/company.controllers')
 var degreeController = require('../controllers/api/degree.controllers')
 var experienceController = require('../controllers/api/experience.controllers')
-var contractController = require('../controllers/api/contract.controllers')
+var contractController = require('../controllers/api/contract.type.controllers')
 var renewController = require('../controllers/api/renew.contract.controllers')
 var refusalController = require('../controllers/api/refusal.feedback.controllers')
 var acceptanceController = require('../controllers/api/acceptance.feedback.controllers')
 var taskController = require('../controllers/api/task.controllers')
 var frontOfficeController = require('../controllers/api/frontOffice.controllers')
-
+var contractTypeController = require('../controllers/api/contract.type.controllers')
 //website
 routerr.get('/', indexController.getHome)
 routerr.get('/companies', indexController.getCompanies)
 routerr.get('/jobs', indexController.getJobs)
 routerr.get('/login', indexController.getLogin)
+routerr.get('/register', indexController.getRegister)
+routerr.get('/viewjob/:id', indexController.getJobDetail)
+routerr.post('/auth', indexController.getAuth)
+routerr.get('/sendcandidature/:idJob/:idUser', indexController.sendCandidature)
+
 //summary
 routerr.get('/api/summarypage', frontOfficeController.findSummary)
 routerr.put('/api/summarypage/:id', frontOfficeController.updateSummary)
@@ -101,7 +106,7 @@ routerr.get("/api/job/:id", jobController.findOne);
 routerr.put("/api/job/:id", jobController.update);
 routerr.delete("/api/job/:id", jobController.delete);
 routerr.delete("/api/job", jobController.deleteAll);
-
+routerr.post('/searchjob', jobController.search)
 
 //location
 routerr.post('/api/location', locationController.create)
@@ -154,7 +159,7 @@ routerr.delete("/api/education", educationController.deleteAll);
 
 //language
 routerr.post('/api/language', languageController.create)
-routerr.get('/api/language',languageController.findAll)
+routerr.get('/api/language', languageController.findAll)
 routerr.get("/api/language/:id", languageController.findOne);
 routerr.put("/api/language/:id", languageController.update);
 routerr.delete("/api/language/:id", languageController.delete);
@@ -162,7 +167,7 @@ routerr.delete("/api/language", languageController.deleteAll);
 
 //degree
 routerr.post('/api/degree', degreeController.create)
-routerr.get('/api/degree',degreeController.findAll)
+routerr.get('/api/degree', degreeController.findAll)
 routerr.get("/api/degree/:id", degreeController.findOne);
 routerr.put("/api/degree/:id", degreeController.update);
 routerr.delete("/api/degree/:id", degreeController.delete);
@@ -170,7 +175,7 @@ routerr.delete("/api/degree", degreeController.deleteAll);
 
 //experience
 routerr.post('/api/experience', experienceController.create)
-routerr.get('/api/experience',experienceController.findAll)
+routerr.get('/api/experience', experienceController.findAll)
 routerr.get("/api/experience/:id", experienceController.findOne);
 routerr.put("/api/experience/:id", experienceController.update);
 routerr.delete("/api/experience/:id", experienceController.delete);
@@ -178,7 +183,7 @@ routerr.delete("/api/experience", experienceController.deleteAll);
 
 //skill
 routerr.post('/api/skill', skillController.create)
-routerr.get('/api/skill',skillController.findAll)
+routerr.get('/api/skill', skillController.findAll)
 routerr.get("/api/skill/:id", skillController.findOne);
 routerr.put("/api/skill/:id", skillController.update);
 routerr.delete("/api/skill/:id", skillController.delete);
@@ -186,7 +191,7 @@ routerr.delete("/api/skill", skillController.deleteAll);
 
 //contract
 routerr.post('/api/contract', contractController.create)
-routerr.get('/api/contract',contractController.findAll)
+routerr.get('/api/contract', contractController.findAll)
 routerr.get("/api/contract/:id", contractController.findOne);
 routerr.put("/api/contract/:id", contractController.update);
 routerr.delete("/api/contract/:id", contractController.delete);
@@ -196,7 +201,7 @@ routerr.delete("/api/contract", contractController.deleteAll);
 
 //renew
 routerr.post('/api/renew', renewController.create)
-routerr.get('/api/renew',renewController.findAll)
+routerr.get('/api/renew', renewController.findAll)
 routerr.get("/api/renew/:id", renewController.findOne);
 routerr.put("/api/renew/:id", renewController.update);
 routerr.delete("/api/renew/:id", renewController.delete);
@@ -204,14 +209,14 @@ routerr.delete("/api/renew", renewController.deleteAll);
 
 //acceptance
 routerr.post('/api/acceptance', acceptanceController.create)
-routerr.get('/api/acceptance',acceptanceController.findAll)
+routerr.get('/api/acceptance', acceptanceController.findAll)
 routerr.get("/api/acceptance/:id", acceptanceController.findOne);
 routerr.put("/api/acceptance/:id", acceptanceController.update);
 routerr.delete("/api/acceptance/:id", acceptanceController.delete);
 routerr.delete("/api/acceptance", acceptanceController.deleteAll);
 //refusal
 routerr.post('/api/refusal', refusalController.create)
-routerr.get('/api/refusal',refusalController.findAll)
+routerr.get('/api/refusal', refusalController.findAll)
 routerr.get("/api/refusal/:id", refusalController.findOne);
 routerr.put("/api/refusal/:id", refusalController.update);
 routerr.delete("/api/refusal/:id", refusalController.delete);
@@ -220,9 +225,18 @@ routerr.delete("/api/refusal", refusalController.deleteAll);
 
 //task
 routerr.post('/api/task', taskController.create)
-routerr.get('/api/task',taskController.findAll)
+routerr.get('/api/task', taskController.findAll)
 routerr.get("/api/task/:id", taskController.findOne);
 routerr.put("/api/task/:id", taskController.update);
 routerr.delete("/api/task/:id", taskController.delete);
 routerr.delete("/api/task", taskController.deleteAll);
+
+
+//refusal
+routerr.post('/api/contract-type', contractTypeController.create)
+routerr.get('/api/contract-type', contractTypeController.findAll)
+routerr.get("/api/contract-type/:id", contractTypeController.findOne);
+routerr.put("/api/contract-type/:id", contractTypeController.update);
+routerr.delete("/api/contract-type/:id", contractTypeController.delete);
+routerr.delete("/api/contract-type", contractTypeController.deleteAll);
 module.exports = routerr;

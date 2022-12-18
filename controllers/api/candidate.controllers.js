@@ -1,9 +1,9 @@
 
-const {findAllCandidates, createCandidate, findCandidateById, deleteCandidateById, updateCandidate, deleteAllCandidates } = require("../../services/candidate.services");
+const { findAllCandidates, createCandidate, findCandidateById, deleteCandidateById, updateCandidate, deleteAllCandidates } = require("../../services/candidate.services");
 
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.username) {
+    if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -11,10 +11,29 @@ exports.create = (req, res) => {
     }
     // Create a user
     const user = {
-        username: req.body.username,
-        birthday: req.body.birthday
+
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        dateOfBirth: req.body.dateOfBirth,
+        gender: req.body.gender,
+        nationality: req.body.nationality,
+        city: req.body.city,
+        country: req.body.country,
+        categoryJob: req.body.jobCategory,
+        address: req.body.address,
+        careerLevel: req.body.careerLevel,
+        language: req.body.language,
+        salary: req.body.salary,
+        remoteWork: req.body.remoteWork,
+        summary: req.body.summary,
+        cv: req.body.cv,
+        coverLetter: req.body.coverLetter,
+        skills: req.body.skills,
+
     }
-    createCandidate(user)
+    console.log(user)
+    createCandidate(user, res)
 };
 
 exports.findAll = (req, res) => {

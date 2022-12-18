@@ -1,98 +1,97 @@
-const User = require("../models/user.models");
+const ContactType = require("../models/contract.type.models");
 
 
+exports.findAllContactTypes = (res) => {
 
-exports.findAllUsers = (res) => {
-
-    User.findAll()
+    ContactType.findAll()
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving users."
+                    err.message || "Some error occurred while retrieving ContactTypes."
             });
         });
 }
 
-exports.createUser = (user) => {
-    // Save user in the database
-    User.create(user)
+exports.createContactType = (ContactType, res) => {
+    // Save ContactType in the database
+    ContactType.create(ContactType, res)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the User."
+                    err.message || "Some error occurred while creating the ContactType."
             });
         });
 }
 
-exports.findUserById = (id, res) => {
-    User.findByPk(id)
+exports.findContactTypeById = (id, res) => {
+    ContactType.findByPk(id)
         .then(data => {
             res.send(data);
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving User with id=" + id
+                message: "Error retrieving ContactType with id=" + id
             });
         });
 }
 
-exports.deleteUserById = (id, res) => {
-    User.destroy({
+exports.deleteContactTypeById = (id, res) => {
+    ContactType.destroy({
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "User was deleted successfully!"
+                    message: "ContactType was deleted successfully!"
                 });
             } else {
                 res.send({
-                    message: `Cannot delete User with id=${id}. Maybe User was not found!`
+                    message: `Cannot delete ContactType with id=${id}. Maybe ContactType was not found!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete User with id=" + id
+                message: "Could not delete ContactType with id=" + id
             });
         });
 }
 
-exports.updateUser = (id, req, res) => {
-    User.update(req.body, {
+exports.updateContactType = (id, req, res) => {
+    ContactType.update(req.body, {
         where: { id: id }
     })
         .then(num => {
             if (num == 1) {
                 res.send({
-                    message: "User was updated successfully."
+                    message: "ContactType was updated successfully."
                 });
             } else {
                 res.send({
-                    message: `Cannot update User with id=${id}. Maybe User was not found or req.body is empty!`
+                    message: `Cannot update ContactType with id=${id}. Maybe ContactType was not found or req.body is empty!`
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error updating User with id=" + id
+                message: "Error updating ContactType with id=" + id
             });
         });
 }
 
-exports.deleteAllUsers = (res) => {
-    User.destroy({
+exports.deleteAllContactTypes = (res) => {
+    ContactType.destroy({
         where: {},
         truncate: false
     })
         .then(nums => {
-            res.send({ message: `${nums} User were deleted successfully!` });
+            res.send({ message: `${nums} ContactType were deleted successfully!` });
         })
         .catch(err => {
             res.status(500).send({
