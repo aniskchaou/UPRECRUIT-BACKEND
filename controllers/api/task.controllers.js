@@ -1,5 +1,5 @@
 
-const {  findAllTasks, createTask, findTaskById, deleteTaskById, updateTask, deleteAllTasks } = require("../../services/task.services");
+const { findAllTasks, createTask, findTaskById, deleteTaskById, updateTask, deleteAllTasks } = require("../../services/task.services");
 
 exports.create = (req, res) => {
     // Validate request
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
         task: req.body.task,
         status: req.body.status
     }
-    createTask(user,res)
+    createTask(user, res)
 };
 
 exports.findAll = (req, res) => {
@@ -30,7 +30,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     const id = req.params.id;
-    updateTask(id, req)
+    updateTask(id, req, res)
 };
 
 exports.delete = (req, res) => {

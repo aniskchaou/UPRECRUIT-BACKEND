@@ -1,23 +1,23 @@
-		<!-- Navigation Start  -->
+<!-- Navigation Start  -->
 		<nav class="navbar navbar-default navbar-sticky bootsnav">
 
-			<div class="container">      
+			<div class="container" >      
 				<!-- Start Header Navigation -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 						<i class="fa fa-bars"></i>
 					</button>
-					<a class="navbar-brand" href="index.html"><img src="img/logo.png" class="logo" alt=""></a>
+					<a class="navbar-brand" href="/"><img src="img/logo.png" class="logo" alt=""></a>
 				</div>
 				<!-- End Header Navigation -->
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="navbar-menu">
-					<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-							<li><a href="/">Home</a></li>
-							<li><a href="/jobs">Jobs</a></li>
-							<li><a href="/login">Login</a></li>
-							<li><a href="/companies">Companies</a></li>
+					<ul class="nav navbar-nav navbar-right"   data-in="fadeInDown" data-out="fadeOutUp">
+							<li><a href="/">Home</a></li> 
+						<li><a href="/">Jobs</a></li>
+							<li><a href="/">Login</a></li>
+							<li><a href="/">Companies</a></li> 
 						</ul>
 				</div><!-- /.navbar-collapse -->
 			</div>   
@@ -164,85 +164,30 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
 				</div>
 				<div class="companies">
-					<div class="company-list">
-						<div class="row">
-							<div class="col-md-2 col-sm-2">
-								<div class="company-logo">
-									<img src="img/google.png" class="img-responsive" alt="" />
-								</div>
-							</div>
-							<div class="col-md-10 col-sm-10">
-								<div class="company-content">
-									<h3>IOS Developer<span class="full-time">Full Time</span></h3>
-									<p><span class="company-name"><i class="fa fa-briefcase"></i>Google</span><span class="company-location"><i class="fa fa-map-marker"></i> 07th Avenue, New York, NY, United States</span><span class="package"><i class="fa fa-money"></i>$22,000-$50,000</span></p>
-								</div>
-							</div>
-						</div>
-					</div>
 					
-					<div class="company-list">
-						<div class="row">
-							<div class="col-md-2 col-sm-2">
-								<div class="company-logo">
-									<img src="img/microsoft.png" class="img-responsive" alt="" />
+						{{#each jobs}}
+						<div class="company-list">
+							<div class="row">
+								<div class="col-md-2 col-sm-2">
+									<div class="company-logo">
+										<img src="uploads/{{image}}" class="img-responsive" alt="">
+									</div>
 								</div>
-							</div>
-							<div class="col-md-10 col-sm-10">
-								<div class="company-content">
-									<h3>Back-End developer<span class="part-time">Part Time</span></h3>
-									<p><span class="company-name"><i class="fa fa-briefcase"></i>Microsoft</span><span class="company-location"><i class="fa fa-map-marker"></i> 7th Avenue, New York, NY, United States</span><span class="package"><i class="fa fa-money"></i>$20,000-$52,000</span></p>
+								<div class="col-md-8 col-sm-8">
+									<div class="company-content">
+										<h3>{{post}}</h3>
+										<p><span class="company-name"><i class="fa fa-briefcase"></i>{{firm}}</span><span
+												class="company-location"><i class="fa fa-map-marker"></i> {{location}}
+											</span><span class="package"><i class="fa fa-money"></i>${{salaryFrom}}-${{salaryTo}}</span></p>
+									</div>
 								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="company-list">
-						<div class="row">
-							<div class="col-md-2 col-sm-2">
-								<div class="company-logo">
-									<img src="img/apple.png" class="img-responsive" alt="" />
-								</div>
-							</div>
-							<div class="col-md-10 col-sm-10">
-								<div class="company-content">
-									<h3>UI/UX Designer<span class="freelance">Freelance</span></h3>
-									<p><span class="company-name"><i class="fa fa-briefcase"></i>Apple</span><span class="company-location"><i class="fa fa-map-marker"></i> 7th Avenue, New York, NY, United States</span><span class="package"><i class="fa fa-money"></i>$22,000-$50,000</span></p>
+								<div class="col-md-2 col-sm-2">
+									<a type="button" href="/viewjob/{{id}}" class="btn view-job" name="View Job">View Job</a>
 								</div>
 							</div>
 						</div>
-					</div>
-					
-					<div class="company-list">
-						<div class="row">
-							<div class="col-md-2 col-sm-2">
-								<div class="company-logo">
-									<img src="img/wipro.png" class="img-responsive" alt="" />
-								</div>
-							</div>
-							<div class="col-md-10 col-sm-10">
-								<div class="company-content">
-									<h3>IOS developer<span class="internship">Intership</span></h3>
-									<p><span class="company-name"><i class="fa fa-briefcase"></i>Wipro</span><span class="company-location"><i class="fa fa-map-marker"></i> 8th Avenue, New York, NY, United States</span><span class="package"><i class="fa fa-money"></i>$24,000-$52,000</span></p>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="company-list">
-						<div class="row">
-							<div class="col-md-2 col-sm-2">
-								<div class="company-logo">
-									<img src="img/twitter.png" class="img-responsive" alt="" />
-								</div>
-							</div>
-							<div class="col-md-10 col-sm-10">
-								<div class="company-content">
-									<h3>Marketing Holder<span class="full-time">Full Time</span></h3>
-									<p><span class="company-name"><i class="fa fa-briefcase"></i>Twitter</span><span class="company-location"><i class="fa fa-map-marker"></i> 4th Avenue, New York, NY, United States</span><span class="package"><i class="fa fa-money"></i>$24,000-$48,000</span></p>
-								</div>
-							</div>
-						</div>
-					</div>
+						{{/each}}
+						
 				</div>
 				<div class="row">
 					<input type="button" class="btn brows-btn" value="Brows All Jobs" />
@@ -379,6 +324,6 @@
 				
 			</div>
 			<div class="copy-right">
-			 <p>&copy;Copyright 2018 Jober Desk | Design By <a href="https://themezhub.com/">ThemezHub</a></p>
+			 <p></p>
 			</div>
 		</footer>

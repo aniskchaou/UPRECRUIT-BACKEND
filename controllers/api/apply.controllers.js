@@ -1,21 +1,21 @@
 
-const {findInitialQualification,findFirstInterview,findSecondInterview,findContractProposal,findContractSigned, findAllApplys, createApply, findApplyById, deleteApplyById, updateApply, deleteAllApplys } = require("../../services/apply.services");
+const { findInitialQualification, findFirstInterview, findSecondInterview, findContractProposal, findContractSigned, findAllApplys, createApply, findApplyById, deleteApplyById, updateApply, deleteAllApplys } = require("../../services/apply.services");
 
 
 exports.findInitialQualification = (req, res) => {
-findInitialQualification(res)
+    findInitialQualification(res)
 }
 exports.findFirstInterview = (req, res) => {
-findFirstInterview(res)
+    findFirstInterview(res)
 }
 exports.findSecondInterview = (req, res) => {
-findSecondInterview(res)
+    findSecondInterview(res)
 }
 exports.findContractProposal = (req, res) => {
-findContractProposal(res)
+    findContractProposal(res)
 }
 exports.findContractSigned = (req, res) => {
-findContractSigned(res)
+    findContractSigned(res)
 }
 
 
@@ -30,13 +30,13 @@ exports.create = (req, res) => {
     // Create a Apply
 
     const Apply = {
-        condidate: req.body.condidate,
+        condidate: req.body.candidate,
         jobOffer: req.body.jobOffer,
         dateApplication: req.body.dateApplication,
         status: req.body.status,
         appreciation: req.body.appreciation,
     }
-    createApply(Apply,res)
+    createApply(Apply, res)
 };
 
 exports.findAll = (req, res) => {

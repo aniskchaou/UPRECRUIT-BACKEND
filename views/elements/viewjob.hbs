@@ -7,7 +7,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                 <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand" href="index.html"><img src="img/logo.png" class="logo" alt=""></a>
+            <a class="navbar-brand" href="/"><img src="../img/logo.png" class="logo" alt=""></a>
         </div>
         <!-- End Header Navigation -->
 
@@ -15,9 +15,9 @@
         <div class="collapse navbar-collapse" id="navbar-menu">
             <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                 <li><a href="/">Home</a></li>
-                <li><a href="/jobs">Jobs</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/companies">Companies</a></li>
+                <li><a href="/">Jobs</a></li>
+                <li><a href="/">Login</a></li>
+                <li><a href="/">Companies</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div>
@@ -31,39 +31,41 @@
             <div class="row">
                 <div class="basic-information">
                     <div class="col-md-3 col-sm-3">
-                        <img src="img/microsoft.png" alt="" class="img-responsive">
+                        <img src="../uploads/{{job.image}}" alt="" class="img-responsive">
                     </div>
                     <div class="col-md-9 col-sm-9">
                         <div class="profile-content">
-                            <h2>Microsoft<span>Internet and computer software</span></h2>
-                            <a type="submit" href="/sendcandidature/{{idJob}}/{{idUser}}" class="btn btn-primary" name="View Job">Send Candidature</a>
+                            <h2>{{job.post}}<span></span></h2>
+                            <a type="submit" href="/newcandidature/{{job.id}}" class="btn btn-primary" name="View Job">Send Candidature</a>
                             <ul class="information">
-                                <li><span>Address:</span>Menlo Park, CA</li>
-                                <li><span>Website:</span>Google.com</li>
-                                <li><span>Employee:</span>50,000 - 70,000 employer</li>
-                                <li><span>Mail:</span>info@google.com</li>
-                                <li><span>From:</span>1998</li>
+                                <li><span>Company :</span>{{job.firm}}</li>
+                                <li><span>Start :</span>{{job.start}}</li>
+                                <li><span>Location :</span>{{job.location}}</li>
+                                <li><span>Salary From :</span>${{job.salaryFrom}}</li>
+                                <li><span>Salary To :</span>${{job.salaryTo}}</li>
+                                <li><span>Exeperience :</span>{{job.experienceLevel}}</li>
+                                <li><span>Gender : </span>{{job.gender}}</li>
+                                <li><span>Skills :</span>{{job.requirement}}</li>
+                                <li><span>Degree :</span>{{job.degree}}</li>
                             </ul>
                         </div>
                     </div>
                     <ul class="social">
-                        <li><a href="" class="facebook"><i class="fa fa-facebook"></i>Facebook</a></li>
-                        <li><a href="" class="google"><i class="fa fa-google-plus"></i>Google Plus</a></li>
-                        <li><a href="" class="twitter"><i class="fa fa-twitter"></i>Twitter</a></li>
-                        <li><a href="" class="linkedin"><i class="fa fa-linkedin"></i>Linked In</a></li>
-                        <li><a href="" class="instagram"><i class="fa fa-instagram"></i>Instagram</a></li>
+                        <li><a href="/" class="facebook"><i class="fa fa-facebook"></i>Facebook</a></li>
+                        <li><a href="/" class="google"><i class="fa fa-google-plus"></i>Google Plus</a></li>
+                        <li><a href="/" class="twitter"><i class="fa fa-twitter"></i>Twitter</a></li>
+                        <li><a href="/" class="linkedin"><i class="fa fa-linkedin"></i>Linked In</a></li>
+                        <li><a href="/" class="instagram"><i class="fa fa-instagram"></i>Instagram</a></li>
                     </ul>
-                    <div class="panel panel-default">
+                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-user fa-fw"></i> About Microsoft
+                            <i class="fa fa-user fa-fw"></i> Description
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <p>The front end is the part that users see and interact with, includes the User Interface,
-                                the animations, and usually a bunch of logic to talk to the backend. It is the visual
-                                bit that the user interacts with.</p>
+                            <p><ul><li>{{job.description}}</li></ul></p>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -71,24 +73,8 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <p>Rapid growth since incorporation has triggered a chain of products, acquisitions and
-                                partnerships beyond Google's core search engine (Google Search).</p>
-                            <ul>
-                                <li>Software testing in a Web Applications/Mobile environment.</li>
-                                <li>Software Test Plans from Business Requirement Specifications for test engineering
-                                    group.</li>
-                                <li>Software testing in a Web Applications environment.</li>
-                                <li>Translate designs into responsive web interfaces</li>
-                                <li>Software testing in a Web Applications/Mobile environment.</li>
-                                <li>Software testing in a Web Applications environment.</li>
-                                <li>Translate designs into responsive web interfaces</li>
-                                <li>Software Test Plans from Business Requirement Specifications for test engineering
-                                    group.</li>
-                                <li>Run production tests as part of software implementation; Create, deliver and support
-                                    test plans for testing group to execute.</li>
-                                <li>Run production tests as part of software implementation; Create, deliver and support
-                                    test plans for testing group to execute.</li>
-                            </ul>
+                            <p><ul><li>{{job.responsibilities}}</li></ul></p>
+
                         </div>
                     </div>
 
@@ -98,23 +84,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <p>Rapid growth since incorporation has triggered a chain of products.</p>
-                            <ul>
-                                <li>Software testing in a Web Applications/Mobile environment.</li>
-                                <li>Software Test Plans from Business Requirement Specifications for test engineering
-                                    group.</li>
-                                <li>Software testing in a Web Applications environment.</li>
-                                <li>Translate designs into responsive web interfaces</li>
-                                <li>Software testing in a Web Applications/Mobile environment.</li>
-                                <li>Software testing in a Web Applications environment.</li>
-                                <li>Translate designs into responsive web interfaces</li>
-                                <li>Software Test Plans from Business Requirement Specifications for test engineering
-                                    group.</li>
-                                <li>Run production tests as part of software implementation; Create, deliver and support
-                                    test plans for testing group to execute.</li>
-                                <li>Run production tests as part of software implementation; Create, deliver and support
-                                    test plans for testing group to execute.</li>
-                            </ul>
+                            <p><ul><li>{{job.minimumQualifications}}</li></ul></p>
                         </div>
                     </div>
 
@@ -124,22 +94,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <ul>
-                                <li>Software testing in a Web Applications/Mobile environment.</li>
-                                <li>Software Test Plans from Business Requirement Specifications for test engineering
-                                    group.</li>
-                                <li>Software testing in a Web Applications environment.</li>
-                                <li>Translate designs into responsive web interfaces</li>
-                                <li>Software testing in a Web Applications/Mobile environment.</li>
-                                <li>Software testing in a Web Applications environment.</li>
-                                <li>Translate designs into responsive web interfaces</li>
-                                <li>Software Test Plans from Business Requirement Specifications for test engineering
-                                    group.</li>
-                                <li>Run production tests as part of software implementation; Create, deliver and support
-                                    test plans for testing group to execute.</li>
-                                <li>Run production tests as part of software implementation; Create, deliver and support
-                                    test plans for testing group to execute.</li>
-                            </ul>
+                            <p><ul><li>{{job.preferredQualifications}}</li></ul></p>
                         </div>
                     </div>
 
@@ -157,26 +112,26 @@
         <div class="col-md-3 col-sm-6">
             <h4>Featured Job</h4>
             <ul>
-                <li><a href="#">Browse Jobs</a></li>
-                <li><a href="#">Premium MBA Jobs</a></li>
-                <li><a href="#">Access Database</a></li>
-                <li><a href="#">Manage Responses</a></li>
-                <li><a href="#">Report a Problem</a></li>
-                <li><a href="#">Mobile Site</a></li>
-                <li><a href="#">Jobs by Skill</a></li>
+                <li><a href="/">Browse Jobs</a></li>
+                <li><a href="/">Premium MBA Jobs</a></li>
+                <li><a href="/">Access Database</a></li>
+                <li><a href="/">Manage Responses</a></li>
+                <li><a href="/">Report a Problem</a></li>
+                <li><a href="/">Mobile Site</a></li>
+                <li><a href="/">Jobs by Skill</a></li>
             </ul>
         </div>
 
         <div class="col-md-3 col-sm-6">
             <h4>Latest Job</h4>
             <ul>
-                <li><a href="#">Browse Jobs</a></li>
-                <li><a href="#">Premium MBA Jobs</a></li>
-                <li><a href="#">Access Database</a></li>
-                <li><a href="#">Manage Responses</a></li>
-                <li><a href="#">Report a Problem</a></li>
-                <li><a href="#">Mobile Site</a></li>
-                <li><a href="#">Jobs by Skill</a></li>
+                <li><a href="/">Browse Jobs</a></li>
+                <li><a href="/">Premium MBA Jobs</a></li>
+                <li><a href="/">Access Database</a></li>
+                <li><a href="/">Manage Responses</a></li>
+                <li><a href="/">Report a Problem</a></li>
+                <li><a href="/">Mobile Site</a></li>
+                <li><a href="/">Jobs by Skill</a></li>
             </ul>
         </div>
 
@@ -207,7 +162,7 @@
 
     </div>
     <div class="copy-right">
-        <p>&copy;Copyright 2018 Jober Desk | Design By <a href="https://themezhub.com/">ThemezHub</a></p>
+        <p></p>
     </div>
 </footer>
 

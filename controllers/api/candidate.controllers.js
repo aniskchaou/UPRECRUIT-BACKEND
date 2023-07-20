@@ -49,7 +49,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     const id = req.params.id;
-    updateCandidate(id, req)
+    updateCandidate(id, req, res)
 };
 
 exports.delete = (req, res) => {

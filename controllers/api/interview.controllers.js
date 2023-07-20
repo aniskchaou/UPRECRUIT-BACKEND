@@ -1,5 +1,5 @@
 
-const {  findAllInterviews, createInterview, findInterviewById, deleteInterviewById, updateInterview, deleteAllInterviews } = require("../../services/interview.services");
+const { findAllInterviews, createInterview, findInterviewById, deleteInterviewById, updateInterview, deleteAllInterviews } = require("../../services/interview.services");
 
 exports.create = (req, res) => {
     // Validate request
@@ -20,9 +20,10 @@ exports.create = (req, res) => {
         zoomLink: req.body.zoomLink,
         reminder: req.body.reminder,
         notes: req.body.notes,
-        location: req.body.location
+        location: req.body.location,
+        candidates: req.body.candidates
     }
-    createInterview(user,res)
+    createInterview(user, res)
 };
 
 exports.findAll = (req, res) => {
@@ -38,7 +39,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     const id = req.params.id;
-    updateInterview(id, req,res)
+    updateInterview(id, req, res)
 };
 
 exports.delete = (req, res) => {

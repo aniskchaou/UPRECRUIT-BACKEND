@@ -19,7 +19,11 @@ var JobOffer = sequelize.define('job_offer', {
     feature: Sequelize.STRING,
     degree: Sequelize.STRING,
     experienceLevel: Sequelize.STRING,
-    deadline: Sequelize.STRING
+    deadline: Sequelize.STRING,
+    firm: Sequelize.INTEGER,
+    responsibilities: Sequelize.STRING,
+    minimumQualifications: Sequelize.STRING,
+    preferredQualifications: Sequelize.STRING
 
 });
 

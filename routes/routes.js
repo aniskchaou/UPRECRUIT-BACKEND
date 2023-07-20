@@ -23,6 +23,36 @@ var acceptanceController = require('../controllers/api/acceptance.feedback.contr
 var taskController = require('../controllers/api/task.controllers')
 var frontOfficeController = require('../controllers/api/frontOffice.controllers')
 var contractTypeController = require('../controllers/api/contract.type.controllers')
+var settingsController = require('../controllers/api/settings.controllers')
+
+
+
+
+
+routerr.get("/api/syssettings", settingsController.findSystemSettings);
+routerr.put("/api/edit/systemsettings/:id", settingsController.updateSystemSettings);
+routerr.get("/api/restore/syssettings/:id", settingsController.restoreSystemSettings);
+routerr.get("/api/dashboardsettings", settingsController.findDashboardSettings);
+routerr.put("/api/edit/dashboardsettings/:id", settingsController.updateDashboardSettings);
+routerr.get("/api/restore/dashboard/:id", settingsController.restoreDashboardSettings);
+routerr.get("/api/emailtemplatesettings", settingsController.findEmailTemplateSettings);
+routerr.get("/api/emailsettings", settingsController.findEmailSettings);
+routerr.put("/api/edit/emailsettings/:id", settingsController.updateEmailSettings);
+routerr.get("/api/footersettings", settingsController.findFooterSettings);
+routerr.put("/api/edit/footersettings/:id", settingsController.updateFooterSettings);
+routerr.get("/api/restore/footer/:id", settingsController.restoreFooterSettings);
+routerr.get("/api/headersettings", settingsController.findHeaderSettings);
+routerr.put("/api/edit/headersettings/:id", settingsController.updateHeaderSettings);
+routerr.get("/api/restore/header/:id", settingsController.restoreHeaderSettings);
+routerr.get("/api/localisationsettings", settingsController.findLocalisationSettings);
+routerr.put("/api/edit/localisationsettings/:id", settingsController.updateLocalisationSettings);
+routerr.get("/api/notificationsettings", settingsController.findNotificationSettings);
+routerr.put("/api/edit/notificationsettings/:id", settingsController.updateNotificationsSettings);
+routerr.get("/api/restore/localisationsettings/:id", settingsController.restoreLocalisationSettings);
+
+
+
+
 //website
 routerr.get('/', indexController.getHome)
 routerr.get('/companies', indexController.getCompanies)
@@ -32,6 +62,10 @@ routerr.get('/register', indexController.getRegister)
 routerr.get('/viewjob/:id', indexController.getJobDetail)
 routerr.post('/auth', indexController.getAuth)
 routerr.get('/sendcandidature/:idJob/:idUser', indexController.sendCandidature)
+routerr.get('/newcandidature/:idJob', indexController.newCandidature)
+routerr.post('/finishcandidature', indexController.finishCandidature)
+routerr.get('/admin', indexController.adminPanel)
+routerr.post("/api/user/login", userController.login);
 
 //summary
 routerr.get('/api/summarypage', frontOfficeController.findSummary)
@@ -108,6 +142,8 @@ routerr.delete("/api/job/:id", jobController.delete);
 routerr.delete("/api/job", jobController.deleteAll);
 routerr.post('/searchjob', jobController.search)
 
+
+
 //location
 routerr.post('/api/location', locationController.create)
 routerr.get('/api/location', locationController.findAll)
@@ -141,13 +177,13 @@ routerr.put("/api/skill/:id", skillController.update);
 routerr.delete("/api/skill/:id", skillController.delete);
 routerr.delete("/api/skill", skillController.deleteAll);
 
-routerr.post('/api/company', companyController.create)
+routerr.post('/api/company/:fileName', companyController.create)
 routerr.get('/api/company', companyController.findAll)
 routerr.get("/api/company/:id", companyController.findOne);
 routerr.put("/api/company/:id", companyController.update);
 routerr.delete("/api/company/:id", companyController.delete);
 routerr.delete("/api/company", companyController.deleteAll);
-
+routerr.post('/api/company/image/uploadfile', companyController.addImage)
 
 //education
 routerr.post('/api/education', educationController.create)
