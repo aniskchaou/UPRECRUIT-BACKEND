@@ -18,7 +18,7 @@ exports.create = (req, res) => {
         university: req.body.university,
         location: req.body.location
     }
-    createDegree(user,res)
+    createDegree(user, res)
 };
 
 exports.findAll = (req, res) => {
@@ -34,7 +34,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     const id = req.params.id;
-    updateDegree(id, req)
+    updateDegree(id, req, res)
 };
 
 exports.delete = (req, res) => {

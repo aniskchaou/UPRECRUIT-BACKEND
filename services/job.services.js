@@ -1,3 +1,4 @@
+const Company = require("../models/company.models");
 const Job = require("../models/job.offer.models");
 
 
@@ -14,8 +15,68 @@ exports.findAllJobs = (res) => {
             });
         });
 }
+exports.findJob = (job, res) => {
 
-exports.createJob = (job,res) => {
+
+    Company.findAll({
+        raw: true,
+        //Other parameters
+    })
+        .then(firms => {
+
+
+            const jobs = Job.findAll({
+                where: {
+                    post: job.post,
+                    //jobType: job.jobType,
+                    //experienceLevel: job.experienceLevel
+                }
+            }).then(data => {
+                //res.send(data);
+
+                res.render("elements/search", {
+                    viewTitle: 'Jobs', jobs: data.map(item => {
+                        const nameFirm = firms.filter(it => it.id === item.firm)[0]?.name
+                        const image = firms.filter(it => it.id === item.firm)[0]?.logo
+                        return { image: image, firm: nameFirm, id: item.id, salaryFrom: item.salaryFrom, salaryTo: item.salaryTo, post: item.post, location: item.location }
+                    })
+
+                });
+            })
+                .catch(err => {
+                    res.status(500).send({
+                        message:
+                            err.message || "Some error occurred while retrieving Jobs."
+                    });
+                });
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving Companys."
+            });
+        });
+
+
+    console.log("rrrrrrrrrrrrrrr")
+
+    /* Promise
+         .all([jobs])
+         .then(responses => {
+             res.render("elements/search", {
+                 viewTitle: 'Jobs', jobs: responses.dataValues
+ 
+             });
+             console.log(responses.dataValues)
+         }).catch(err => {
+             res.status(500).send({
+                 message:
+                     err.message || "Some error occurred while retrieving Jobs."
+             });
+         });*/
+
+}
+exports.createJob = (job, res) => {
     // Save Job in the database
     Job.create(job)
         .then(data => {

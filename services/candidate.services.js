@@ -1,3 +1,4 @@
+const config = require("../config/connection.server");
 const Candidate = require("../models/candidate.models");
 
 
@@ -15,9 +16,9 @@ exports.findAllCandidates = (res) => {
         });
 }
 
-exports.createCandidate = (Candidate) => {
+exports.createCandidate = (candidate, res) => {
     // Save Candidate in the database
-    Candidate.create(Candidate)
+    Candidate.create(candidate)
         .then(data => {
             res.send(data);
         })
@@ -97,6 +98,26 @@ exports.deleteAllCandidates = (res) => {
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while removing all tutorials."
+            });
+        });
+}
+
+exports.loginUser = (email, password, res) => {
+    Candidate.findOne({ where: { email: email, password: password } })
+        .then(data => {
+
+            config.user = data
+            console.log(config.user)
+            if (data === null) {
+                res.render("elements/login", { viewTitle: 'Jobs' });
+            } else {
+                res.render("elements/profile", { viewTitle: 'Jobs' });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the User."
             });
         });
 }

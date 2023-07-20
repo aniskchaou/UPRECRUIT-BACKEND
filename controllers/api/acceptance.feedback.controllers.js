@@ -14,7 +14,7 @@ exports.create = (req, res) => {
         name: req.body.name,
         description: req.body.description
     }
-    createAcceptanceFeedBack(acceptanceFeedBack,res)
+    createAcceptanceFeedBack(acceptanceFeedBack, res)
 };
 
 exports.findAll = (req, res) => {
@@ -30,7 +30,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     const id = req.params.id;
-    updateAcceptanceFeedBack(id, req)
+    updateAcceptanceFeedBack(id, req, res)
 };
 
 exports.delete = (req, res) => {

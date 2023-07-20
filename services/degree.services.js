@@ -15,9 +15,9 @@ exports.findAllDegrees = (res) => {
         });
 }
 
-exports.createDegree = (degree,res) => {
+exports.createDegree = (degree, res) => {
     // Save Degree in the database
-    Degree.create(degree,res)
+    Degree.create(degree, res)
         .then(data => {
             res.send(data);
         })
@@ -79,8 +79,8 @@ exports.updateDegree = (id, req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).send({
-                message: "Error updating Degree with id=" + id
+            res.send({
+                message: err
             });
         });
 }

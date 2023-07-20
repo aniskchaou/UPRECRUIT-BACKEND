@@ -1,13 +1,15 @@
 const Apply = require("../models/apply.models");
+const Candidate = require("../models/candidate.models");
+const JobOffer = require("../models/job.offer.models");
 
 
 
 
 
-exports.findInitialQualification=(res)=>{
- Apply.findAll({
-                   where: { status: "1" }
-               })
+exports.findInitialQualification = (res) => {
+    Apply.findAll({
+        where: { status: "1" }
+    })
         .then(data => {
             res.send(data);
         })
@@ -18,25 +20,10 @@ exports.findInitialQualification=(res)=>{
             });
         });
 }
-exports.findFirstInterview=(res)=>{
- Apply.findAll({
-                   where: { status: "2" }
-               })
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving Applys."
-            });
-        });
-}
-
-exports.findSecondInterview=(res)=>{
- Apply.findAll({
-                   where: { status: "3" }
-               })
+exports.findFirstInterview = (res) => {
+    Apply.findAll({
+        where: { status: "2" }
+    })
         .then(data => {
             res.send(data);
         })
@@ -48,10 +35,10 @@ exports.findSecondInterview=(res)=>{
         });
 }
 
-exports.findContractSigned=(res)=>{
- Apply.findAll({
-                   where: { status: "5" }
-               })
+exports.findSecondInterview = (res) => {
+    Apply.findAll({
+        where: { status: "3" }
+    })
         .then(data => {
             res.send(data);
         })
@@ -63,10 +50,25 @@ exports.findContractSigned=(res)=>{
         });
 }
 
-exports.findContractProposal=(res)=>{
- Apply.findAll({
-                   where: { status: "4" }
-               })
+exports.findContractSigned = (res) => {
+    Apply.findAll({
+        where: { status: "5" }
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving Applys."
+            });
+        });
+}
+
+exports.findContractProposal = (res) => {
+    Apply.findAll({
+        where: { status: "4" }
+    })
         .then(data => {
             res.send(data);
         })
@@ -79,23 +81,47 @@ exports.findContractProposal=(res)=>{
 }
 exports.findAllApplys = (res) => {
 
-    Apply.findAll()
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving Applys."
-            });
-        });
+
+    var ress = []
+    var candidates = Candidate.findAll({ raw: true, })
+    const jpbs = JobOffer.findAll({ raw: true, })
+    const applys = Apply.findAll({ raw: true, })
+
+
+    return Promise.all([candidates, jpbs, applys]).then((results) => {
+        /*         console.log('********')
+                console.log(results[0])
+                console.log('********')
+                console.log(results[1])
+                console.log('********') */
+        //console.log(results[2])
+        res.send(
+            results[2].map(item => {
+
+                return {
+                    condidate: results[0].filter(it => it.id == item.condidate)[0]?.firstName,
+                    jobOffer: results[1].filter(it => it.id == item.jobOffer)[0]?.post,
+                    dateApplication: item.dateApplication,
+                    status: item.status,
+                    appreciation: item.appreciation
+
+                }
+            })
+
+        )
+
+
+    })
+
+
 }
 
-exports.createApply = (apply,res) => {
+exports.createApply = (apply, res) => {
     // Save Apply in the database
     Apply.create(apply)
         .then(data => {
-            res.send(data);
+            //res.send(data);
+            res.redirect('/')
         })
         .catch(err => {
             res.status(500).send({

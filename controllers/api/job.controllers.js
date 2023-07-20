@@ -1,5 +1,26 @@
 
-const { findAllJobs, createJob, findJobById, deleteJobById, updateJob, deleteAllJobs } = require("../../services/job.services");
+const { findJob, findAllJobs, createJob, findJobById, deleteJobById, updateJob, deleteAllJobs } = require("../../services/job.services");
+
+exports.search = (req, res) => {
+    // Validate request
+
+    if (!req.body) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+    console.log(req.body)
+
+    const user = {
+        post: req.body.post,
+        jobType: req.body.jobType,
+        experienceLevel: req.body.experienceLevel,
+
+    }
+    findJob(user, res)
+}
+
 
 exports.create = (req, res) => {
     // Validate request
@@ -25,15 +46,12 @@ exports.create = (req, res) => {
         jobType: req.body.jobType,
         position: req.body.position,
         gender: req.body.gender,
-         feature: req.body.feature,
-                degree: req.body.degree,
-                experienceLevel: req.body.experienceLevel,
-                deadline: req.body.deadline
-
-
-
+        feature: req.body.feature,
+        degree: req.body.degree,
+        experienceLevel: req.body.experienceLevel,
+        deadline: req.body.deadline
     }
-    createJob(user,res)
+    createJob(user, res)
 };
 
 exports.findAll = (req, res) => {
@@ -49,7 +67,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     const id = req.params.id;
-    updateJob(id, req,res)
+    updateJob(id, req, res)
 };
 
 exports.delete = (req, res) => {

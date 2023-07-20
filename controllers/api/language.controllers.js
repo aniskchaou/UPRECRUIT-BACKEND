@@ -14,7 +14,7 @@ exports.create = (req, res) => {
         language: req.body.language,
         level: req.body.level
     }
-    createLanguage(user,res)
+    createLanguage(user, res)
 };
 
 exports.findAll = (req, res) => {
@@ -30,7 +30,7 @@ exports.findOne = (req, res) => {
 
 exports.update = (req, res) => {
     const id = req.params.id;
-    updateLanguage(id, req)
+    updateLanguage(id, req, res)
 };
 
 exports.delete = (req, res) => {

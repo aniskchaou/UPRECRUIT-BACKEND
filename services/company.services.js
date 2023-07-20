@@ -1,5 +1,5 @@
 const Company = require("../models/company.models");
-
+const multer = require("multer");
 
 exports.findAllCompanys = (res) => {
 
@@ -15,10 +15,57 @@ exports.findAllCompanys = (res) => {
         });
 }
 
-exports.createCompany = (company,res) => {
+exports.createCompany = (company, res) => {
     // Save Company in the database
-    Company.create(company,res)
+
+    console.log(company)
+    Company.create(company, res)
         .then(data => {
+
+
+
+            /* var storage = multer.diskStorage({
+                destination: function (req, file, cb) {
+                    cb(null, 'views/assets/uploads')
+                },
+                filename: function (req, file, cb) {
+                    console.log(file)
+                    cb(null, file.originalname)
+                }
+            })
+
+            var upload = multer({ storage: storage }).single('logo')
+
+
+
+            upload(req, res, function (err) {
+
+                if (err) {
+
+                    // ERROR occurred (here it can be occurred due
+                    // to uploading image of size greater than
+                    // 1MB or uploading different file type)
+                    console.log("errrrroeeeee")
+                    res.send(err)
+                }
+                else {
+
+                }
+
+            }) */
+
+
+
+
+
+
+
+
+
+
+
+
+
             res.send(data);
         })
         .catch(err => {
@@ -63,7 +110,7 @@ exports.deleteCompanyById = (id, res) => {
         });
 }
 
-exports.updateCompany = (id,req, res) => {
+exports.updateCompany = (id, req, res) => {
     Company.update(req.body, {
         where: { id: id }
     })
